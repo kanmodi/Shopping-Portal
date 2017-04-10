@@ -54,3 +54,18 @@ filters
 
 products view order-> chronological/ by rating / by price
 
+
+
+
+
+
+
+
+
+delimiter |
+create trigger update_basket before insert on basketprods for each row 
+begin
+update basketprods set quantity = quantity + new.quantity where new.pid=basketprods.PID and new.bid=basketprods.BID
+update basket set totalcost= totalcost + pprice*new.quantity from product,basket where product.PID=new.pid and new.bid=basket.BID
+end |
+delimiter;

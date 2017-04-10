@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="scripts.js">
 	</script>
 </head>
 
 
-<body>
-
-	<font size="7"><center>ONLINE SHOPPING PORTAL</center></font>	
-
-	<div align="right"> 
+<body background="9.png">
+<div class="container-fluid">
+	<div align="center">
 		<?php
 			$_SESSION['user_name'] = null;
             $_SESSION['user_email'] = null;
@@ -25,10 +24,14 @@
 
 			echo "<span id=\"loginSpace\">";
 			if($login->isUserLoggedIn()) {
-				echo "<font size=\"5\">Hello, " . $_SESSION['user_name'];
-				echo "</font></br><font size=\"4\"><a href=\"userAccount.php\">My Account&nbsp;&nbsp;&nbsp;</a></font>";
+				echo "<nav class=\"navbar navbar-default\"><a class=\"navbar-brand\">Hello, " . $_SESSION['user_name'];
+				echo "</a><a href=\"userAccount.php\">My Account</a>";
 				echo "   <a href=\"basket.php\"><img src=\"cart.png\" style=\"width:40px;height:40px\"></a>";
-				echo "</br></br><button onclick=\"abc()\">Logout</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				echo "<button onclick=\"abc()\">Logout</button></nav>";
+				/*echo "<div><font size=\"4\">Hello, " . $_SESSION['user_name'];
+				echo "</font><font size=\"4\"><a href=\"userAccount.php\">My Account&nbsp;&nbsp;&nbsp;</a></font>";
+				echo "   <a href=\"basket.php\"><img src=\"cart.png\" style=\"width:40px;height:40px\"></a>";
+				echo "<button onclick=\"abc()\">Logout</button></div>";*/
 			}
 			else {
 				$_SESSION['user_name'] = null;
@@ -39,13 +42,19 @@
 			echo "</span>";
 		?>
 	</div>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-		<center>
-			<input type="text" size="50" name="searchbar" onkeyup="showHint(this.value)" autocomplete="off" />	
-			<input type="submit" name="searchbutton" value="Search">
-			<p>Suggestions: <span id="txtHint"></span></p>	
-		</center>
-	</form>
+	<font size="7"><center>ONLINE SHOPPING PORTAL</center></font>	
+
+	<div class="form-group">
+		<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+			<center>
+				<label for="searchtext">Search:</label>
+				<input type="text" size="50" name="searchbar" onkeyup="showHint(this.value)" id="searchtext" autocomplete="off" />	
+				<input type="submit" name="searchbutton" value="Search" class="btn btn-primary">
+				<p>Suggestions: <span id="txtHint"></span></p>	
+			</center>
+		</form>
+	</div>
+</div>
 </body>
 </html>
 
