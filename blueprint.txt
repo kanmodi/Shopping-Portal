@@ -1,0 +1,56 @@
+login
+
+admin
+	products
+		view all
+			search by tag
+			see all categories
+			delete
+			change name
+			change descr
+			change img src
+			change stock
+			see comments
+				delete comment
+		add product
+			add tags -> update 'tag', 'tagProduct'
+	customers
+		view all //address also
+			delete
+			see ordr (history)
+	comments
+		search by pid
+		search by cid
+			delete comment
+	ordr
+		view all orders
+		change orderstatus
+
+
+user(session)
+	see own profile
+		change name/gender/password/dob/phoneno/billadd/deliveryadd
+	products
+		search by tag / categories -> name, desc, price, image, in stock or not
+		see comments
+		add comment
+		see rating
+		add rating
+		add to basket -> ask quantity
+	basket
+		view -> all products, total cost -> option to delete from basket
+			view-> pname, quantity
+		chckout
+			add to ordr, empty basket, decrease stock
+	ordr
+		view history / view status of current ordr
+			view-> orderId, all ordered products, status
+
+
+filters
+	by price
+	by brand
+	exclude out of stock
+
+products view order-> chronological/ by rating / by price
+
