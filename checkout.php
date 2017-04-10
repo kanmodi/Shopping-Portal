@@ -24,13 +24,5 @@
 
 	$r4 = mysqli_query($con, "delete from basketprods where bid = $bid") or die("q4 err");
 
-
-	$r5 = mysqli_query($con,"select * from address where cid=$cid");
-
-	$result = mysqli_query($r5);
-while($row = mysqli_fetch_array($result)) {
-echo $row['fieldname'];
-}
-
 	echo "Items bought successfuly. Thank You :)";
 ?>
