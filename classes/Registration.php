@@ -38,28 +38,34 @@ class Registration
     {
         if (empty($_POST['user_name'])) {
             $this->errors[] = "Empty Username";
-        } 
+        }
         elseif (empty($_POST['user_password_new']) || empty($_POST['user_password_repeat'])) {
             $this->errors[] = "Empty Password";
-        } 
+        }
         elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
             $this->errors[] = "Passwords do not match!";
-        } 
+        }
         elseif (strlen($_POST['user_password_new']) < 5) {
             $this->errors[] = "Password has a minimum length of 6 characters";
-        } 
+        }
         elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
             $this->errors[] = "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
-        } 
+        }
         elseif (empty($_POST['user_email'])) {
             $this->errors[] = "Email cannot be empty";
-        } 
+        }
         elseif (strlen($_POST['user_email']) > 64) {
             $this->errors[] = "Email cannot be longer than 64 characters";
-        } 
+        }
         elseif (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors[] = "Your email address is not in a valid email format";
-        } 
+        }
+        elseif ((date_diff(date_create($_POST['dob']), date_create('now'))->y)<18) {
+            $this->errors[] = "Date of birth is incorrect. Age should me more than 18";
+          }
+        elseif (!($_POST['gender'] == 'M' || $_POST['gender'] == 'F')) {
+          $this->errors[] = "Wrong entry as Gender";
+        }
         else {
             // create a database connection
             $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -96,7 +102,7 @@ class Registration
                     $password = "";
                     $dbname = "isdm";
                     $con = mysqli_connect($servername, $username, $password, $dbname);
-                    
+
                     $name = $_POST['name'];
                     $gender = $_POST['gender'];
                     $dob = $_POST['dob'];
@@ -113,7 +119,7 @@ class Registration
                     $r1 = mysqli_query($con, "insert into address(street,city,state,zipcode) values('$street','$city','$state',$zipcode)");
                     $billid = mysqli_insert_id($con);
 
-                    $r1 = mysqli_query($con, "insert into address(street,city,state,zipcode) values('$dstreet','$dcity','$dstate',$dzipcode)"); 
+                    $r1 = mysqli_query($con, "insert into address(street,city,state,zipcode) values('$dstreet','$dcity','$dstate',$dzipcode)");
                     $deliverid = mysqli_insert_id($con);
 
                     // write new user's data into database
@@ -123,7 +129,7 @@ class Registration
                     $cid = mysqli_insert_id($con);
 
                     $r3 = mysqli_query($con, "insert into basket(cid,numprods,totalcost) values($cid,0,0)") or die("q3 error");
-        
+
                     // if user has been added successfully
                     if ($query_new_user_insert) {
                         $this->messages[] = "Your account has been created successfully. You can now log in.";

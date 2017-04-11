@@ -1,0 +1,10 @@
+.imgWrap {
+  position: relative;
+  height: 200px;
+  width: 257px;
+}
+
+.imgWrap:hover .imgDescription {
+  visibility: visible;
+  opacity: 1;
+}

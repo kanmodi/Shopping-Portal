@@ -48,7 +48,7 @@
 	$cid = mysqli_fetch_row($r10);
 	$cid = $cid[0];
 
-	$r1 = mysqli_query($con, "select pname,quantity,pid,bid,pprice from basket natural join basketprods natural join product where  cid = $cid");
+	$r1 = mysqli_query($con, "select pname,quantity,pid,bid,pprice from basket natural join basketprods natural join product where  cid = $cid") or die("No user logged in!");
 	$n = mysqli_num_rows($r1);
 	$bid = null;
 	echo <<<ab
@@ -67,12 +67,10 @@ ab;
 		$bid = $an[3];
 		$x = $an[4]*$an[1];
 		echo "<tr><td>$i</td><td>$an[0]</td><td>$an[1]</td><td>$x</td>";
-		echo "<td><button onclick=\"removeProd($an[2],$an[3],$an[1],$an[4])\">Remove</button></td></tr>";
+		echo "<td><button class=\"btn btn-primary\" onclick=\"removeProd($an[2],$an[3],$an[1],$an[4])\">Remove</button></td></tr>";
 	}
 	echo "</table>";
 	echo "</br><span id=\"show\"></span>";
 	echo "</br><a href=\"searchProd.php\">Back to Home</a></br></br>";
-	echo "<font size=\"5\"><button onclick=\"checkout($bid)\">Checkout</button></font></center>"
+	echo "<font size=\"5\"><button class=\"btn btn-primary\" onclick=\"checkout($bid)\">Checkout</button></font></center>"
 ?>
-
-

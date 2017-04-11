@@ -1,3 +1,7 @@
+<html>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
+</html>
+
 <?php
 // show potential errors / feedback (from registration object)
 if (isset($registration)) {
@@ -13,7 +17,7 @@ if (isset($registration)) {
     }
 }
 ?>
-<!-- 
+<!--
 <head>
     <script>
         function fun(a,b,c,d) {
@@ -38,13 +42,13 @@ if (isset($registration)) {
 
     <tr><td><label>User's email</label></td>
     <td><input type="email" name="user_email" ></td></tr>
-    
+
     <tr><td><label>Password (min. 5 characters)</label></td>
     <td><input type="password" name="user_password_new" pattern=".{5,}" autocomplete="off" /></td></tr>
-    
+
     <tr><td><label>Repeat password</label></td>
     <td><input type="password" name="user_password_repeat" pattern=".{5,}" autocomplete="off" /></td></tr>
-    
+
     <tr><td><label >Male(M)/Female(F)</label></td>
     <td><input type="text" name="gender" ></td></tr>
 
@@ -55,12 +59,12 @@ if (isset($registration)) {
     <td><input type="text" name="mobileno" pattern=".{10,}"></td></tr>
 
 </table>
-    <hr>   
+    <hr>
 
 <font size="5">BILLING ADDRESS</font></br>
 <table>
     <col width="200">
-    
+
     <tr><td><label >Street</label></td>
     <td><input type="text" name="street"></td></tr>
 
@@ -99,4 +103,3 @@ if (isset($registration)) {
 <a href="index.php">Back to Login Page</a>
 </br></br>
 <a href="searchProd.php">Back to Home</a>
-

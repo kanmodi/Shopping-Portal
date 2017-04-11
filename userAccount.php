@@ -1,16 +1,21 @@
 <script>
-	function updateUser(a,b,c,d) {
+	function updateUser(a, b, c, d, e, f, g, h, i) {
 		var a1 = document.getElementsByName(a)[0].value;
-        var b1 = document.getElementsByName(b)[0].value;
-        var c1 = document.getElementsByName(c)[0].value;
-        var d1 = document.getElementsByName(d)[0].value;
-        var t = new XMLHttpRequest();
+    var b1 = document.getElementsByName(b)[0].value;
+    var c1 = document.getElementsByName(c)[0].value;
+    var d1 = document.getElementsByName(d)[0].value;
+		var e1 = document.getElementsByName(e)[0].value;
+		var f1 = document.getElementsByName(f)[0].value;
+		var g1 = document.getElementsByName(g)[0].value;
+		var h1 = document.getElementsByName(h)[0].value;
+		var i1 = document.getElementsByName(i)[0].value;
+    var t = new XMLHttpRequest();
 		t.onreadystatechange = function() {
 			if(t.readyState == 4 && t.status == 200) {
 				alert(t.responseText);
 			}
 		}
-		t.open("GET", "updateUserScript.php?q="+a1+"&r="+b1+"&s="+c1+"&t="+d1,true);
+		t.open("GET", "updateUserScript.php?q="+a1+"&r="+b1+"&s="+c1+"&t="+d1+"&u="+e1+"&v="+f1+"&w="+g1+"&x="+h1+"&y="+i1,true);
 		t.send();
 	}
 </script>
@@ -23,7 +28,7 @@
 	$con = mysqli_connect($servername, $username, $password, $dbname);
 	session_start();
 	$uname = $_SESSION['user_name'];
-	
+
 	$r10 = mysqli_query($con, "select cname,cemail,cgender,cdob,cmobileno from customer where CUserName = '$uname'") or die("q10 error!");
 	$t = mysqli_fetch_row($r10);
 	$name = $t[0];
@@ -44,7 +49,7 @@
 		<center><table>
 			<tr>
 				<td>Name</td>
-				<td><input type="textbox" value='$name' name="cname"></td>
+				<td><label>$name</label></td>
 			</tr>
 			<tr>
 				<td>User Name</td>
@@ -56,11 +61,11 @@
 			</tr>
 			<tr>
 				<td>Gender</td>
-				<td><input type="textbox" value='$gender' name="cgender"></td>
+				<td><label>$gender</label></td>
 			</tr>
 			<tr>
 				<td>DOB</td>
-				<td><input type="date" value='$dob' name="cdob"></td>
+				<td><label>$dob</label></td>
 			</tr>
 			<tr>
 				<td>Mobile Number</td>
@@ -68,16 +73,47 @@
 			</tr>
 			<tr>
 				<td>Billing Address</td>
-				<td>$billadd</td>
+			</tr>
+			<tr>
+				<td>Street</td>
+				<td><input type="textbox" value='$t11[0]' name="billstreet"></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="textbox" value='$t11[1]' name="billcity"></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="textbox" value='$t11[2]' name="billstate"></td>
+			</tr>
+			<tr>
+				<td>Zipcode</td>
+				<td><input type="textbox" value='$t11[3]' name="billzip"></td>
 			</tr>
 			<tr>
 				<td>Delivery Address</td>
-				<td>$deliveryadd</td>
 			</tr>
+			<tr>
+				<td>Street</td>
+				<td><input type="textbox" value='$t12[0]' name="delstreet"></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="textbox" value='$t12[1]' name="delcity"></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="textbox" value='$t12[2]' name="delstate"></td>
+			</tr>
+			<tr>
+				<td>Zipcode</td>
+				<td><input type="textbox" value='$t12[3]' name="delzip"></td>
+			</tr>
+			<tr>
 		</table>
 		</br>
 		<a href="searchProd.php">Back to Home</a></br></br>
-		<input type="button" value="Update" onclick="updateUser('cname', 'cgender', 'cdob', 'cmobileno')">
+		<button class="btn btn-primary" onclick="updateUser('cmobileno', 'billstreet', 'billcity', 'billstate', 'billzip', 'delstreet', 'delcity', 'delstate', 'delzip')">Update</button>
 		</center>
 html;
 ?>

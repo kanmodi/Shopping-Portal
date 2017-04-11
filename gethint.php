@@ -84,6 +84,8 @@ $a[] = 'wearable';
 $a[] = 'wearables';
 $a[] = 'wilson';
 $a[] = 'woodland';
+$a[] = 'appliance';
+
 
 // get the q parameter from URL
 $q = $_REQUEST["q"];

@@ -1,4 +1,3 @@
-
 <?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (empty($_POST["website"])) {
-    $website = "";  
+    $website = "";
   } else {
     $website = test_input($_POST["website"]);
   }
@@ -57,6 +56,6 @@ Gender:
 <input type="radio" name="gender" value="male">Male
 <span class="error">* <?php echo $genderErr;?></span>
 <br><br>
-<input type="submit" name="submit" value="Submit"> 
+<input type="submit" name="submit" value="Submit">
 
 </form>
